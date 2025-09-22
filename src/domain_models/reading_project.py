@@ -5,7 +5,7 @@ class ReadingProject:
         self._items: List[TextualItem] = []
 
     def add_item(self, title: str) -> TextualItem:
-        item = TextualItem(title, self.id)
+        item = TextualItem(title, self.isbn)
         self._items.append(item)
         return item
 
