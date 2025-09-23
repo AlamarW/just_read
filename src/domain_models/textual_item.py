@@ -7,8 +7,8 @@ class TextualItem:
         self.title = title
         self.isbn = isbn 
 
-    @classmethod
-    def _fetch_metadata(cls, title: str ="", isbn: str=""):
+    @staticmethod
+    def _fetch_metadata(title: str ="", isbn: str=""):
         """Fetch metadata from an external source."""
         if not title and not isbn:
             raise ValueError
