@@ -32,3 +32,18 @@ def test_update_progress_not_started():
     assert item.total_pages == 200
     assert item.progress_percent == 0.0
     assert item.status == ReadingStatus.NOT_STARTED
+
+def test_update_completion_date():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+    item.update_progress(current_page=200, total_pages=200)  # Mark as completed
+    item.update_completion_date("2024-01-01")
+    assert item.completion_date == "2024-01-01"
+
+def test_update_completion_date_invalid_status():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+    try:
+        item.update_completion_date("2024-01-01")
+    except ValueError as e:
+        assert str(e) == "Cannot set completion date unless status is COMPLETED"
+    else:
+        assert False, "Expected ValueError was not raised"

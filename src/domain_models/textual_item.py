@@ -37,6 +37,12 @@ class TextualItem:
         else:
             self.status = ReadingStatus.NOT_STARTED
 
-    
-        
+    def update_start_date(self, start_date):
+        self.start_date = start_date
+
+    def update_completion_date(self, completion_date): 
+        if self.status == ReadingStatus.COMPLETED:
+            self.completion_date = completion_date
+        else:
+            raise ValueError("Cannot set completion date unless status is COMPLETED")
 
