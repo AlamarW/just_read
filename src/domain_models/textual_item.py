@@ -9,7 +9,11 @@ class TextualItem:
 
     @staticmethod
     def _fetch_metadata(title: str ="", isbn: str=""):
-        """Fetch metadata from an external source."""
+        """
+        Fetch metadata from an external source. OpenLibrary API is used here. Google books API
+        will be used in the future. Requires either title or isbn to be provided and defaults 
+        to isbn if both are provided for more precise results.
+        """
         if not title and not isbn:
             raise ValueError
         if title:
