@@ -26,7 +26,7 @@ class TextualItem:
     def update_progress(self, current_page: int, total_pages: int):
         self.current_page = current_page
         self.total_pages = total_pages
-        self.progress_percent = (current_page / total_pages) * 100 if total_pages > 0 else 0
+        self.progress_percent = round((current_page / total_pages) * 100 if total_pages > 0 else 0, 1)
         if self.progress_percent == 100:
             self.status = ReadingStatus.COMPLETED
         elif self.progress_percent > 0:

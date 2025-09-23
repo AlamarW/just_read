@@ -9,6 +9,14 @@ def test_update_progress():
     assert item.progress_percent == 25.0
     assert item.status == ReadingStatus.IN_PROGRESS
 
+def test_update_progress_rounded_percent():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+    item.update_progress(current_page=31, total_pages=211)
+    assert item.current_page == 31
+    assert item.total_pages == 211
+    assert item.progress_percent == 14.7
+    assert item.status == ReadingStatus.IN_PROGRESS
+
 def test_update_progress_to_completion():
     item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
     item.update_progress(current_page=200, total_pages=200)
