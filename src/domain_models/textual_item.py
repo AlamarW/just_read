@@ -20,8 +20,11 @@ class TextualItem:
         self.current_page = 0
         self.total_pages = 0
         self.status = ReadingStatus.NOT_STARTED
-        self.notes = []
         self.rating = None
+        self.start_date = None
+        self.completion_date = None
+        self.dnf_date = None
+        self.notes = []
     
     def update_progress(self, current_page: int, total_pages: int):
         self.current_page = current_page
@@ -33,5 +36,7 @@ class TextualItem:
             self.status = ReadingStatus.IN_PROGRESS
         else:
             self.status = ReadingStatus.NOT_STARTED
+
+    
         
 
