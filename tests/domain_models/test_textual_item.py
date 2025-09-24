@@ -1,3 +1,5 @@
+import pytest
+
 from src.domain_models.textual_item import TextualItem
 from src.domain_models.textual_item import ReadingStatus
 
@@ -47,3 +49,26 @@ def test_update_completion_date_invalid_status():
         assert str(e) == "Cannot set completion date unless status is COMPLETED"
     else:
         assert False, "Expected ValueError was not raised"
+
+def test_update_rating():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+    item.update_rating(4)
+    assert item.rating == 4
+
+def test_update_rating_invalid():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+
+    with pytest.raises(ValueError):
+        item.update_rating(0)
+
+def test_update_rating_only_half_values():
+    item = TextualItem(title="Sample Book", isbn="1234567890", author="Author Name", project_id=1)
+
+    with pytest.raises(ValueError):
+        item.update_rating(3.4)
+
+def test_update_rating_valid_half_value():
+    item = TextualItem(title="Sample Book", isbn="1234123412", author="Author Name", project_id=1)
+    item.update_rating(3.5)
+
+    assert item.rating == 3.5

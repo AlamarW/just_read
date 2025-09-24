@@ -46,3 +46,10 @@ class TextualItem:
         else:
             raise ValueError("Cannot set completion date unless status is COMPLETED")
 
+    def update_rating(self, rating: int):
+        if rating < 1 or rating > 5:
+            raise ValueError("Rating must be between 1 and 5")
+        elif not (rating * 2).is_integer():
+            raise ValueError("Rating must be of decimal values of .0 or .5")
+        self.rating = rating 
+        
