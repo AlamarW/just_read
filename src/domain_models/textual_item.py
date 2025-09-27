@@ -11,7 +11,7 @@ class TextualItem:
     A textual item is a book, article, paper, etc. that has been
     added to a user's reading project
     """
-    def __init__(self, title: str, isbn: str, author: str, project_id):
+    def __init__(self, title: str, isbn: str, author: str, project_id: int=None):
         self.title = title
         self.author = author
         self.isbn = isbn
@@ -24,7 +24,7 @@ class TextualItem:
         self.start_date = None
         self.completion_date = None
         self.dnf_date = None
-        self.notes = []
+        self.notes: list[str] = []
     
     def update_progress(self, current_page: int, total_pages: int):
         self.current_page = current_page
