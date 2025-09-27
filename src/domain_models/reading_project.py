@@ -13,3 +13,11 @@ class ReadingProject:
         self._items.append(item)
         return item
 
+    def get_items(self):
+        return self._items
+
+    def delete_item(self, item: TextualItem):
+        self._items.remove(item)
+    
+    def total_project_pages(self):
+        return sum([item.total_pages for item in self._items if item.total_pages is not None])
