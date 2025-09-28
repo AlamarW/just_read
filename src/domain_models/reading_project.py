@@ -21,3 +21,7 @@ class ReadingProject:
     
     def total_project_pages(self):
         return sum([item.total_pages for item in self._items if item.total_pages is not None])
+    
+    def total_books(self):
+        return sum([1 for item in self._items if item.total_pages is not None])
+    
