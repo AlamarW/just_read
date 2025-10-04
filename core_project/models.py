@@ -11,6 +11,7 @@ class ReadingStatus(models.TextChoices):
 
 class Reader(models.Model):
     name = models.CharField(max_length=200)
+    projects = models.ManyToManyField('ReadingProject', related_name='readers', blank=True)
     active_project = models.ForeignKey(
         'ReadingProject', 
         null=True, 
@@ -45,7 +46,8 @@ class ReadingProject(models.Model):
     name = models.CharField(max_length=200)
     reader = models.ForeignKey(Reader, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    active_project = models.BooleanField(default=False)
+
     def add_item(self, title, isbn, author):
         item = TextualItem.objects.create(
             title=title,
